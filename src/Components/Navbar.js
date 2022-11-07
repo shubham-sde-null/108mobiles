@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import DrawerComp from "./DrawerComp";
 import { categories } from "../Contexts/Categories";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import LoginIcon from "@mui/icons-material/Login";
+import { Link } from "react-router-dom";
+import { listStyle } from "../Contexts/listStyle";
 import {
   Grid,
   Toolbar,
@@ -81,16 +87,26 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
+    // border: "1px solid red",
+    boxSizing: "border-box",
   },
 }));
 function Navbar() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const classes = useStyles();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
   return (
-    <AppBar>
+    <AppBar sx={{ backgroundColor: "#2c2c54" }}>
       <Toolbar>
         {isMatch ? (
           <div className={classes.smallScreen}>
@@ -107,9 +123,15 @@ function Navbar() {
         ) : (
           <Grid container className={classes.GridContainer}>
             <Grid item xs={2} className={classes.GridUtility}>
-              <Typography className={classes.Logo} style={{ fontSize: "25px" }}>
-                108Mobiles
-              </Typography>
+              <Link style={listStyle} to="/">
+                {" "}
+                <Typography
+                  className={classes.Logo}
+                  style={{ fontSize: "25px" }}
+                >
+                  108Mobiles
+                </Typography>
+              </Link>
             </Grid>
             <Grid
               item
@@ -141,7 +163,36 @@ function Navbar() {
                 }`}
                 style={{ fontSize: "25px" }}
               >
-                Login
+                <Button
+                  sx={{
+                    color: "white",
+                    fontWeight: "500",
+                    fontSize: "22px",
+                    textTransform: "none",
+                  }}
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                  {/* Login  */}
+                  <LoginIcon fontSize="large" />
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>Login</MenuItem>
+                  <MenuItem onClick={handleClose}>Sign Up</MenuItem>
+                  {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                </Menu>
+                {/* Login */}
               </Typography>
             </Grid>
           </Grid>
