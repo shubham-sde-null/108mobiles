@@ -12,6 +12,7 @@
 // import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import Mobiles from "./Pages/Mobiles";
+import Compare from "./Pages/Compare";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mobiles" element={<Mobiles />} />
+        <Route path="/comparemobiles" element={<Compare />} />
       </Routes>
     </BrowserRouter>
     // <div className="App">
