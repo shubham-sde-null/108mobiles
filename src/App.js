@@ -13,6 +13,8 @@
 import Home from "./Pages/Home";
 import Mobiles from "./Pages/Mobiles";
 import Compare from "./Pages/Compare";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/mobiles" element={<Mobiles />} />
         <Route path="/comparemobiles" element={<Compare />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
     // <div className="App">

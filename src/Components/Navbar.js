@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
-import { listStyle } from "../Contexts/listStyle";
+import { listStyle, listStyle2 } from "../Contexts/listStyle";
 import {
   Grid,
   Toolbar,
@@ -188,8 +188,14 @@ function Navbar() {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Login</MenuItem>
-                  <MenuItem onClick={handleClose}>Sign Up</MenuItem>
+                  <Link style={listStyle2} to="/login">
+                    <MenuItem onClick={handleClose}>Login</MenuItem>
+                  </Link>
+                  <Link style={listStyle2} to="/signup">
+                    {" "}
+                    <MenuItem onClick={handleClose}>Sign Up</MenuItem>
+                  </Link>
+
                   {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                 </Menu>
                 {/* Login */}

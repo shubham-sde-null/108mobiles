@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 const useStyles = makeStyles(() => ({
   popularMobContainer: {
     display: "flex",
@@ -117,7 +118,17 @@ function PopularMobileComparison() {
                     <Box className={classes.thirdBoxSubInnerLeft}>
                       <Box className={classes.boxUtility}>
                         <Typography>Motorola Moto G82</Typography>
-                        <Typography>30,000</Typography>
+                        <Typography
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontWeight: "500",
+                            color: "#ff3f34",
+                          }}
+                        >
+                          {" "}
+                          <CurrencyRupeeIcon fontSize="small" /> 30,000
+                        </Typography>
                       </Box>
                       <img
                         src="https://i.postimg.cc/mgFfyryv/moto-g82-front460x920.png"
@@ -128,12 +139,22 @@ function PopularMobileComparison() {
                     <Typography>VS</Typography>
                     <Box className={classes.thirdBoxSubInnerRight}>
                       <Box className={classes.boxUtility}>
-                        <Typography>Motorola Moto G82</Typography>
-                        <Typography>30,000</Typography>
+                        <Typography>Infinix Note 12 Pro</Typography>
+                        <Typography
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontWeight: "500",
+                            color: "#ff3f34",
+                          }}
+                        >
+                          {" "}
+                          <CurrencyRupeeIcon fontSize="small" /> 16,000
+                        </Typography>
                       </Box>
 
                       <img
-                        src="https://i.postimg.cc/mgFfyryv/moto-g82-front460x920.png"
+                        src="https://i.postimg.cc/Rhnh7d3f/infinixnote12pro5gfront.png"
                         width="60px"
                         alt=""
                       />
@@ -149,7 +170,17 @@ function PopularMobileComparison() {
                     <Box className={classes.thirdBoxSubInnerLeft}>
                       <Box className={classes.boxUtility}>
                         <Typography>Motorola Moto G82</Typography>
-                        <Typography>30,000</Typography>
+                        <Typography
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontWeight: "500",
+                            color: "#ff3f34",
+                          }}
+                        >
+                          {" "}
+                          <CurrencyRupeeIcon fontSize="small" /> 30,000
+                        </Typography>
                       </Box>
                       <img
                         src="https://i.postimg.cc/mgFfyryv/moto-g82-front460x920.png"
@@ -160,12 +191,22 @@ function PopularMobileComparison() {
                     <Typography>VS</Typography>
                     <Box className={classes.thirdBoxSubInnerRight}>
                       <Box className={classes.boxUtility}>
-                        <Typography>Motorola Moto G82</Typography>
-                        <Typography>30,000</Typography>
+                        <Typography>Infinix Note 12 Pro</Typography>
+                        <Typography
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontWeight: "500",
+                            color: "#ff3f34",
+                          }}
+                        >
+                          {" "}
+                          <CurrencyRupeeIcon fontSize="small" /> 16,000
+                        </Typography>
                       </Box>
 
                       <img
-                        src="https://i.postimg.cc/mgFfyryv/moto-g82-front460x920.png"
+                        src="https://i.postimg.cc/Rhnh7d3f/infinixnote12pro5gfront.png"
                         width="60px"
                         alt=""
                       />
