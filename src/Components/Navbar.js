@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import DrawerComp from "./DrawerComp";
 import { categories } from "../Contexts/Categories";
@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import { listStyle, listStyle2 } from "../Contexts/listStyle";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import {
   Grid,
   Toolbar,
@@ -90,7 +91,38 @@ const useStyles = makeStyles((theme) => ({
     // border: "1px solid red",
     boxSizing: "border-box",
   },
+  autoSuggestHolder: {
+    position: "absolute",
+    top: "48px",
+    left: "367px",
+    width: "49.3%",
+    minHeight: "30px",
+    height: "fit-content",
+    border: "1px solid lightgray",
+    borderRadius: "5px",
+    color: "black",
+    backgroundColor: "white",
+    // paddingLeft: "7px",
+  },
 }));
+const historyValues = [
+  "oneplus 10",
+  "poco m4 pro 5G",
+  "infinix note 12 pro 5g",
+  "realme gt neo 2",
+  "iphone 14 pro",
+];
+const defaultValues = [
+  "pocof1",
+  "xiaomi",
+  "onelplus9 pro",
+  "poco x3 pro",
+  "samsung",
+  "infinix",
+  "poco f3 gt",
+  "oneplus10 pro",
+  "infinix note 12 pro",
+];
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -105,6 +137,26 @@ function Navbar() {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
+  const [autoSuggest, setAutoSuggest] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [filteredArray, setFilteredArray] = useState(historyValues);
+  const openAutoSuggest = () => {
+    setAutoSuggest(!autoSuggest);
+    setFilteredArray(historyValues);
+  };
+  const inputValueHandler = (e) => {
+    setInputValue(e.target.value);
+  };
+  useEffect(() => {
+    inputValue === ""
+      ? setFilteredArray(historyValues)
+      : setFilteredArray((_) => {
+          const newArry = defaultValues.filter((item) =>
+            item.includes(inputValue.toLowerCase())
+          );
+          return newArry;
+        });
+  }, [inputValue]);
   return (
     <AppBar sx={{ backgroundColor: "#2c2c54" }}>
       <Toolbar>
@@ -148,6 +200,8 @@ function Navbar() {
                 }`}
               >
                 <input
+                  onClick={openAutoSuggest}
+                  onChange={inputValueHandler}
                   type="text"
                   placeholder="search item here"
                   className={classes.searchBar}
@@ -156,6 +210,30 @@ function Navbar() {
                 <SearchIcon sx={{ paddingLeft: "10px" }} fontSize="medium" />
               </Box>
             </Grid>
+
+            {/* this will work when user enter some search in search bar */}
+            {autoSuggest && (
+              <Box className={classes.autoSuggestHolder}>
+                {filteredArray.map((item) => (
+                  <Link style={listStyle2} to={`/mobiles/${item}`}>
+                    {" "}
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        paddingLeft: "7px",
+                        "&:hover": { backgroundColor: "#d1ccc0" },
+                      }}
+                    >
+                      <TrendingUpIcon fontSize="small" />
+                      &nbsp;
+                      {item}
+                    </Typography>
+                  </Link>
+                ))}
+              </Box>
+            )}
             <Grid item xs={2} className={classes.GridUtility}>
               <Typography
                 className={`${

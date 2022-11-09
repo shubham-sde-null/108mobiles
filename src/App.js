@@ -1,20 +1,9 @@
-// import Navbar from "./Components/Navbar";
-// import SubCategories from "./Components/SubCategories";
-// import CategoryTypes from "./Components/CategoryTypes";
-// import Recommended from "./Components/Recommended";
-// import { recommendedItems } from "./Contexts/Categories";
-// import { latestAndPopular } from "./Contexts/Categories";
-// import UpcomigMobiles from "./Components/upcomingMobiles/UpcomingMobiles";
-// import NewsSection from "./Components/NewsSection/NewsSection";
-// import { latestReviews } from "./Contexts/Categories";
-// import { latestNews } from "./Contexts/Categories";
-// import MobileBrands from "./Components/MobileBrands";
-// import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import Mobiles from "./Pages/Mobiles";
 import Compare from "./Pages/Compare";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import SelectedMobile from "./Pages/SelectedMobile";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
@@ -26,6 +15,7 @@ function App() {
         <Route path="/comparemobiles" element={<Compare />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mobiles/*" element={<SelectedMobile />} />
       </Routes>
     </BrowserRouter>
     // <div className="App">
