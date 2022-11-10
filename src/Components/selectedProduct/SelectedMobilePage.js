@@ -2,11 +2,19 @@ import { Typography, Box } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
+import SdCardIcon from "@mui/icons-material/SdCard";
+import SimCardIcon from "@mui/icons-material/SimCard";
+import FiveGIcon from "@mui/icons-material/FiveG";
+import FingerprintIcon from "@mui/icons-material/Fingerprint";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
+import RadioIcon from "@mui/icons-material/Radio";
+import CompleteSpecs from "./CompleteSpecs";
 const useStyles = makeStyles(() => ({
   selectedProductMainBox: {
     display: "flex",
     flexDirection: "column",
-    border: "1px solid red",
+    // border: "1px solid red",
     marginTop: "65px",
     width: "70%",
     margin: "auto",
@@ -18,29 +26,35 @@ const useStyles = makeStyles(() => ({
     paddingTop: "15px",
     paddingBottom: "15px",
     paddingLeft: "30px",
-    border: "1px solid red",
+    border: "1px solid lightgray",
+    borderBottom: "none",
   },
   selectedProductData: {
     display: "flex",
   },
   selectedProductImages: {
-    border: "1px solid hotpink",
+    // border: "1px solid hotpink",
     alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
     // gap: "10px",
     width: "75%",
     "&>img": {
-      border: "1px solid black",
+      border: "1px solid lightgray",
       paddingTop: "5px",
       paddingBottom: "5px",
       paddingLeft: "10px",
       paddingRight: "10px",
+      "&:hover": {
+        border: "1.5px solid orange",
+        cursor: "pointer",
+      },
     },
   },
   selectedProductDataLeft: {
     display: "flex",
-    border: "1px solid green",
+    border: "1px solid lightgray",
+    borderRight: "none",
     flexDirection: "column",
     width: "30%",
     alignItems: "center",
@@ -54,7 +68,7 @@ const useStyles = makeStyles(() => ({
     paddingLeft: "15px",
     paddingRight: "15px",
     width: "70%",
-    border: "1px solid yellow",
+    border: "1px solid lightgray",
   },
   specificationBox: {
     display: "flex",
@@ -96,76 +110,76 @@ const useStyles = makeStyles(() => ({
     fontWeight: "500",
     width: "50px",
   },
+  extraSpecs: {
+    display: "flex",
+    flexWrap: "wrap",
+    minHeight: "150px",
+    alignItems: "center",
+    // justifyContent: "center",
+    // border: "2px solid black",
+    paddingLeft: "5px",
+  },
+  extraSpecsData: {
+    display: "flex",
+    alignItems: "center",
+    gap: "7px",
+    // border: "1px solid red",
+    // height: "50px",
+    width: "49.5%",
+    color: "grey",
+    fontSize: "15px",
+  },
 }));
 function SelectedMobilePage() {
   const classes = useStyles();
   return (
-    <Box className={classes.selectedProductMainBox}>
-      <Typography variant="body" className={classes.mobileName}>
-        Oneplus 10R
-      </Typography>
-      <Box className={classes.selectedProductData}>
-        <Box className={classes.selectedProductDataLeft}>
-          <img
-            src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
-            width="200px"
-            alt=""
-          />
-          <Box className={classes.selectedProductImages}>
+    <React.Fragment>
+      <Box className={classes.selectedProductMainBox}>
+        <Typography variant="body" className={classes.mobileName}>
+          Oneplus 10R 5G
+        </Typography>
+        <Box className={classes.selectedProductData}>
+          <Box className={classes.selectedProductDataLeft}>
             <img
               src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
-              width="25px"
+              width="200px"
               alt=""
             />
-            <img
-              src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
-              width="25px"
-              alt=""
-            />
-            <img
-              src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
-              width="25px"
-              alt=""
-            />
-            <img
-              src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
-              width="25px"
-              alt=""
-            />
+            <Box className={classes.selectedProductImages}>
+              <img
+                src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
+                width="25px"
+                alt=""
+              />
+              <img
+                src="https://i.postimg.cc/mDynYDWC/oneplus10rback.png"
+                width="25px"
+                alt=""
+              />
+              <img
+                src="https://i.postimg.cc/Gp59xkvn/oneplus10rleft.png"
+                width="25px"
+                alt=""
+              />
+              <img
+                src="https://i.postimg.cc/3J18ZXHf/oneplus10rright.png"
+                width="25px"
+                alt=""
+              />
+            </Box>
           </Box>
-        </Box>
-        <Box className={classes.selectedProductDataRight}>
-          <Box className={classes.score}>
-            <Typography variant="body" sx={{ fontSize: "18px" }}>
-              93%
-            </Typography>
-            <Typography variant="body" sx={{ fontSize: "12px" }}>
-              Spec
-            </Typography>
-            <Typography variant="body" sx={{ fontSize: "12px" }}>
-              Score
-            </Typography>
-          </Box>
-          <Typography
-            sx={{
-              fontSize: "18px",
-              fontWeight: "600",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-            }}
-          >
-            Rs.50,000
-          </Typography>
-          <Divider sx={{ width: "700px", color: "gray" }} />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingTop: "5px",
-              paddingBottom: "5px",
-            }}
-          >
+          <Box className={classes.selectedProductDataRight}>
+            <Box className={classes.score}>
+              <Typography variant="body" sx={{ fontSize: "18px" }}>
+                93%
+              </Typography>
+              <Typography variant="body" sx={{ fontSize: "12px" }}>
+                Spec
+              </Typography>
+              <Typography variant="body" sx={{ fontSize: "12px" }}>
+                Score
+              </Typography>
+            </Box>
             <Typography
               sx={{
                 fontSize: "18px",
@@ -174,116 +188,168 @@ function SelectedMobilePage() {
                 paddingBottom: "10px",
               }}
             >
-              Key Specs
+              Rs.34,000
             </Typography>
-            <Typography
-              variant="body"
+            <Divider sx={{ width: "700px", color: "gray" }} />
+            <Box
               sx={{
-                color: "#fa8231",
-                fontWeight: "500",
-                textDecoration: "underline",
-                "&:hover": {
-                  cursor: "pointer",
-                },
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingTop: "5px",
+                paddingBottom: "5px",
               }}
             >
-              See Full Specs
-            </Typography>
-          </Box>
+              <Typography
+                sx={{
+                  fontSize: "18px",
+                  fontWeight: "600",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                Key Specs
+              </Typography>
+              <Typography
+                variant="body"
+                sx={{
+                  color: "#fa8231",
+                  fontWeight: "500",
+                  textDecoration: "underline",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                See Full Specs
+              </Typography>
+            </Box>
 
-          <Box className={classes.specificationBox}>
-            <Box className={classes.specificationBoxSub}>
-              <Typography variant="body" className={classes.featuresMain}>
-                Performance
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                Octa Core(2.85GHz,....)
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                Mediatek Dimensity ...
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                12GB RAM
-              </Typography>
+            <Box className={classes.specificationBox}>
+              <Box className={classes.specificationBoxSub}>
+                <Typography variant="body" className={classes.featuresMain}>
+                  Performance
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  Octa Core(2.85GHz,....)
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  Mediatek Dimensity ...
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  12GB RAM
+                </Typography>
+              </Box>
+              <Divider
+                alignItems="vertical"
+                sx={{
+                  height: "90%",
+                  backgroundColor: "gray",
+                  border: "0.5px solid gray",
+                }}
+              />
+              <Box className={classes.specificationBoxSub}>
+                <Typography variant="body" className={classes.featuresMain}>
+                  Display
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  6.7Inches(17.02cm)
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  394 PPI, Fluid AMOLED
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  120 Hz Refresh Rate
+                </Typography>
+              </Box>
+              <Divider
+                alignItems="vertical"
+                sx={{
+                  height: "90%",
+                  backgroundColor: "gray",
+                  border: "0.5px solid gray",
+                }}
+              />
+              <Box className={classes.specificationBoxSub}>
+                <Typography variant="body" className={classes.featuresMain}>
+                  Camera
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  50MP + 8MP + 2MP
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  Dual LED Flash
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  16 MP Front Camera
+                </Typography>
+              </Box>
+              <Divider
+                alignItems="vertical"
+                sx={{
+                  height: "90%",
+                  backgroundColor: "gray",
+                  border: "0.5px solid gray",
+                }}
+              />
+              <Box className={classes.specificationBoxSub}>
+                <Typography variant="body" className={classes.featuresMain}>
+                  Battery
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  4500 mAh
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  Super VOOC Charging
+                </Typography>
+                <Typography variant="body" className={classes.features}>
+                  USB Type-C Port
+                </Typography>
+              </Box>
             </Box>
             <Divider
-              alignItems="vertical"
               sx={{
-                height: "90%",
-                backgroundColor: "gray",
-                border: "0.5px solid gray",
+                width: "100%",
+                color: "gray",
+                marginTop: "10px",
+                marginBottom: "10px",
               }}
             />
-            <Box className={classes.specificationBoxSub}>
-              <Typography variant="body" className={classes.featuresMain}>
-                Display
+            <Box className={classes.extraSpecs}>
+              <Typography className={classes.extraSpecsData} variant="body">
+                <SdCardIcon />
+                128GB, <span style={{ color: "red" }}>Non Expandable</span>
               </Typography>
-              <Typography variant="body" className={classes.features}>
-                6.7Inches(17.02cm)
+              <Typography className={classes.extraSpecsData} variant="body">
+                <SimCardIcon />
+                Dual Sim: Nano+Nano
               </Typography>
-              <Typography variant="body" className={classes.features}>
-                394 PPI, Fluid AMOLED
+              <Typography className={classes.extraSpecsData} variant="body">
+                <FiveGIcon />
+                Supported in India
               </Typography>
-              <Typography variant="body" className={classes.features}>
-                120 Hz Refresh Rate
+              <Typography className={classes.extraSpecsData} variant="body">
+                <FingerprintIcon />
+                Fingerprint sensor
               </Typography>
-            </Box>
-            <Divider
-              alignItems="vertical"
-              sx={{
-                height: "90%",
-                backgroundColor: "gray",
-                border: "0.5px solid gray",
-              }}
-            />
-            <Box className={classes.specificationBoxSub}>
-              <Typography variant="body" className={classes.featuresMain}>
-                Camera
+              <Typography className={classes.extraSpecsData} variant="body">
+                <SmartphoneIcon />
+                Gorilla Glass
               </Typography>
-              <Typography variant="body" className={classes.features}>
-                50MP + 8MP + 2MP
+              <Typography className={classes.extraSpecsData} variant="body">
+                <ElectricalServicesIcon />
+                USB OTG Support
               </Typography>
-              <Typography variant="body" className={classes.features}>
-                Dual LED Flash
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                16 MP Front Camera
-              </Typography>
-            </Box>
-            <Divider
-              alignItems="vertical"
-              sx={{
-                height: "90%",
-                backgroundColor: "gray",
-                border: "0.5px solid gray",
-              }}
-            />
-            <Box className={classes.specificationBoxSub}>
-              <Typography variant="body" className={classes.featuresMain}>
-                Battery
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                4500 mAh
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                Super VOOC Charging
-              </Typography>
-              <Typography variant="body" className={classes.features}>
-                USB Type-C Port
+              <Typography className={classes.extraSpecsData} variant="body">
+                <RadioIcon />
+                <span style={{ color: "red" }}>Fm Radio</span>
               </Typography>
             </Box>
           </Box>
-          <Divider
-            sx={{
-              width: "100%",
-              color: "gray",
-              marginTop: "15px",
-              marginBottom: "15px",
-            }}
-          />
         </Box>
       </Box>
-    </Box>
+      <CompleteSpecs />
+    </React.Fragment>
   );
 }
 

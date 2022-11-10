@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const historyValues = [
-  "oneplus 10",
+  "oneplus 10R 5G",
   "poco m4 pro 5G",
   "infinix note 12 pro 5g",
   "realme gt neo 2",
