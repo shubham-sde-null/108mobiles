@@ -1,5 +1,5 @@
 import { Typography, Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
 import SdCardIcon from "@mui/icons-material/SdCard";
@@ -10,6 +10,9 @@ import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import RadioIcon from "@mui/icons-material/Radio";
 import CompleteSpecs from "./CompleteSpecs";
+import Carousel from "react-material-ui-carousel";
+import CloseIcon from "@mui/icons-material/Close";
+import { useSelector } from "react-redux";
 const useStyles = makeStyles(() => ({
   selectedProductMainBox: {
     display: "flex",
@@ -129,8 +132,29 @@ const useStyles = makeStyles(() => ({
     color: "grey",
     fontSize: "15px",
   },
+  selectedImageCont: {
+    position: "absolute",
+    left: "50%",
+    right: "50%",
+    border: "1px solid red",
+    width: "200px",
+    height: "200px",
+  },
 }));
+
 function SelectedMobilePage() {
+  const dataFrm = useSelector((state) => state);
+  console.log("the data inside selector is:", dataFrm);
+  const productImages = [
+    "https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png",
+    "https://i.postimg.cc/mDynYDWC/oneplus10rback.png",
+    "https://i.postimg.cc/Gp59xkvn/oneplus10rleft.png",
+    "https://i.postimg.cc/3J18ZXHf/oneplus10rright.png",
+  ];
+  const [imageselected, setImageSelected] = useState(false);
+  const openImageHandler = () => {
+    setImageSelected(!imageselected);
+  };
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -147,21 +171,25 @@ function SelectedMobilePage() {
             />
             <Box className={classes.selectedProductImages}>
               <img
+                onClick={openImageHandler}
                 src="https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png"
                 width="25px"
                 alt=""
               />
               <img
+                onClick={openImageHandler}
                 src="https://i.postimg.cc/mDynYDWC/oneplus10rback.png"
                 width="25px"
                 alt=""
               />
               <img
+                onClick={openImageHandler}
                 src="https://i.postimg.cc/Gp59xkvn/oneplus10rleft.png"
                 width="25px"
                 alt=""
               />
               <img
+                onClick={openImageHandler}
                 src="https://i.postimg.cc/3J18ZXHf/oneplus10rright.png"
                 width="25px"
                 alt=""
@@ -348,7 +376,83 @@ function SelectedMobilePage() {
           </Box>
         </Box>
       </Box>
+
       <CompleteSpecs />
+      {imageselected && (
+        <Box
+          sx={{
+            display: "flex",
+            // alignItems: "center",
+            // justifyContent: "center",
+            position: "fixed",
+            width: "95vw",
+            height: "85vh",
+            // border: "1px solid lightgray",
+            boxShadow:
+              "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+            zIndex: "100",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            backgroundColor: "#f1f2f6",
+            marginTop: "25px",
+          }}
+          //  className={classes.selectedImageCont}
+        >
+          <Carousel
+            autoPlay={false}
+            indicators={false}
+            navButtonsAlwaysVisible={true}
+            sx={{
+              width: "70%",
+              height: "fit-content",
+              // border: "1px solid hotpink",
+              margin: "auto",
+              backgroundColor: "white",
+              border: "1px solid lightgray",
+            }}
+          >
+            {productImages.map((item) => (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+
+                  borderRadius: "5px",
+                }}
+              >
+                <img src={item} width="250px" alt="" />
+              </Box>
+            ))}
+          </Carousel>
+          <Box
+            onClick={openImageHandler}
+            sx={{
+              border: "1px solid lightgray",
+              height: "fit-content",
+              marginRight: "10px",
+              marginTop: "10px",
+              borderRadius: "3px",
+              boxShadow:
+                "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              padding: "2px",
+            }}
+          >
+            <CloseIcon
+              fontSize="medium"
+              sx={{
+                color: "black",
+                padding: "0px",
+                "&:hover": {
+                  cursor: "pointer",
+                  color: "darkred",
+                },
+              }}
+            />
+          </Box>
+        </Box>
+      )}
     </React.Fragment>
   );
 }
