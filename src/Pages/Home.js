@@ -21,6 +21,7 @@ function Home() {
         (data) => data.json()
       );
       console.log("the data from the redux is:", data);
+
       data.map((item) =>
         dispatch(
           mobileData(
@@ -70,7 +71,23 @@ function Home() {
         )
       );
     }
+    //implementing the debouncing and throttling start
+    // function handleAPICalls(fn, d) {
+    //   let timer;
+    //   return function () {
+    //     let context = this;
+    //     //if this function will accept some arguments then the args variale will contain an array of arguments
+    //     let args = arguments;
+    //     clearTimeout(timer);
+    //     timer = setTimeout(() => {
+    //       console.log("debouncing and throttiling");
+    //       getData.apply(context, args);
+    //     }, d);
+    //   };
+    // }
+    //implementing the debouncing and throttling end
     getData();
+    // handleAPICalls();
   });
 
   return (

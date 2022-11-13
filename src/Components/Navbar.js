@@ -109,11 +109,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const historyValues = [
-  "oneplus 10 Pro",
-  "poco m4 pro 5G",
+  "oneplus 10 pro",
+  "samsung galaxy s21 fe",
   "infinix note 12 pro 5g",
   "realme gt neo 2",
   "iphone 14 pro",
+  "oneplus 10r 5g",
 ];
 // const defaultValues = [
 //   "pocof1",
@@ -241,7 +242,7 @@ function Navbar() {
           );
           return newArry;
         });
-  }, [inputValue, autoSuggestData]);
+  }, [inputValue]);
   return (
     <AppBar sx={{ backgroundColor: "#2c2c54" }}>
       <Toolbar>
@@ -286,8 +287,9 @@ function Navbar() {
               >
                 <input
                   onClick={openAutoSuggest}
-                  onChange={inputValueHandler}
-                  onMouseEnter={openAutoSuggest}
+                  // onChange={inputValueHandler}
+                  onKeyUp={inputValueHandler}
+                  // onMouseEnter={openAutoSuggest}
                   type="text"
                   placeholder="search item here"
                   className={classes.searchBar}
