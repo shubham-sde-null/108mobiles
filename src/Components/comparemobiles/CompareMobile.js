@@ -215,7 +215,7 @@ function CompareMobile() {
     setInputValue(e.target.value);
   };
   const linkClickedChecker = () => {
-    setLinkClicked(!linkClicked);
+    setLinkClicked(true);
   };
   // const getTheSelectedMobile = (e) => {
   //   console.log("the mobile i selected is", e.target.value);

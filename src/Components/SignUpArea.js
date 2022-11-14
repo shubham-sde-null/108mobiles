@@ -1,9 +1,10 @@
 import { Box, Typography, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { listStyle2 } from "../Contexts/listStyle";
+import CloseIcon from "@mui/icons-material/Close";
 const MyBtn = styled(Button)({
   // border: "1px solid hotpink",
   width: "85%",
@@ -18,10 +19,15 @@ const MyBtn = styled(Button)({
 });
 const useStyles = makeStyles(() => ({
   SignUpContainer: {
+    position: "absolute",
+    left: "0%",
+    top: "0%",
+    display: "flex",
     // border: "1px solid red",
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     width: "100vw",
     height: "100vh",
+    zIndex: "100",
   },
   SignUpHolder: {
     top: "50%",
@@ -40,6 +46,28 @@ const useStyles = makeStyles(() => ({
     // marginTop: "50px",
     // border: "1px solid red",
   },
+  closeButton: {
+    top: "23%",
+    left: "63%",
+    position: "absolute",
+    transform: "translate(-23%,-63%)",
+    width: "50px",
+    height: "40px",
+    // backgroundColor: "#ffffff",
+    // background: "transparent",
+    borderRadius: "5px",
+    display: "flex",
+
+    alignItems: "center",
+    justifyContent: "center",
+    // paddingTop: "50px",
+    // gap: "40px",
+    // marginTop: "50px",
+    // border: "1px solid green",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   inputField: {
     marginTop: "20px",
     fontSize: "16px",
@@ -55,7 +83,27 @@ const useStyles = makeStyles(() => ({
   },
   SignUpCredentials: {},
 }));
-function SignUpArea() {
+function SignUpArea({ closeSignUpArea, closeLoginArea }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  async function signUpDetails() {
+    const item = { email, password };
+    let result = await fetch("http://localhost:5000/authenticatedata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify(item),
+    });
+    if (result) {
+      result = await result.json();
+      localStorage.setItem("108login", JSON.stringify(result));
+      console.log("the sign up result is", result);
+    }
+    closeSignUpArea();
+    closeLoginArea();
+  }
   const classes = useStyles();
   return (
     <Box className={classes.SignUpContainer}>
@@ -67,12 +115,46 @@ function SignUpArea() {
           108 Mobiles SignUp
         </Typography>
 
-        <input className={classes.inputField} placeholder="email address" />
-        <input className={classes.inputField} placeholder="password" />
-        <MyBtn className={classes.btn}>SignUp</MyBtn>
+        <input
+          className={classes.inputField}
+          placeholder="email address"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <input
+          className={classes.inputField}
+          placeholder="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <MyBtn className={classes.btn} onClick={signUpDetails}>
+          SignUp
+        </MyBtn>
         <Typography sx={{ color: "black", marginTop: "10px" }}>
           Already have an account?&nbsp;
-          <Link style={listStyle2}>Login</Link>
+          <Link
+            style={listStyle2}
+            onClick={() => {
+              closeSignUpArea();
+              closeLoginArea();
+            }}
+          >
+            Login
+          </Link>
+        </Typography>
+      </Box>
+      <Box className={classes.closeButton}>
+        <Typography variant="body" sx={{ color: "red" }}>
+          <CloseIcon
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: "black", border: "0.5px solid white" },
+            }}
+            onClick={closeSignUpArea}
+          />
         </Typography>
       </Box>
     </Box>

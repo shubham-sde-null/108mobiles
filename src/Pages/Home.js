@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import SubCategories from "../Components/SubCategories";
 import CategoryTypes from "../Components/CategoryTypes";
@@ -13,6 +13,7 @@ import MobileBrands from "../Components/MobileBrands";
 import Footer from "../Components/Footer";
 import { useDispatch } from "react-redux";
 import { mobileData } from "../redux/action";
+
 function Home() {
   const dispatch = useDispatch();
   useEffect(() => {

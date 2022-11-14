@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { listStyle, listStyle2 } from "../Contexts/listStyle";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { useSelector } from "react-redux";
+import LoginArea from "./LoginArea";
 // import { useDispatch } from "react-redux";
 // import { mobileData } from "../redux/action";
 import {
@@ -24,6 +25,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import SearchIcon from "@mui/icons-material/Search";
+import SignUpArea from "./SignUpArea";
 
 const useStyles = makeStyles((theme) => ({
   Logo: {
@@ -128,6 +130,8 @@ const historyValues = [
 //   "infinix note 12 pro",
 // ];
 function Navbar() {
+  const [login, setLogin] = useState(false);
+  const [signIn, setSignIn] = useState(false);
   const dataNav = useSelector((state) => state.completeMobileData);
   let jsonObject = dataNav.map(JSON.stringify);
   let uniqueSet = new Set(jsonObject);
@@ -214,6 +218,12 @@ function Navbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const closeLoginArea = () => {
+    setLogin(!login);
+  };
+  const closeSignUpArea = () => {
+    setSignIn(!signIn);
+  };
   const classes = useStyles();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -244,133 +254,164 @@ function Navbar() {
         });
   }, [inputValue]);
   return (
-    <AppBar sx={{ backgroundColor: "#2c2c54" }}>
-      <Toolbar>
-        {isMatch ? (
-          <div className={classes.smallScreen}>
-            <DrawerComp categories={categories} />
-            <Typography
-              className={`${isMatch ? `${classes.Logos}` : `${classes.Logo}`}`}
-            >
-              108Mobiles
-            </Typography>
-            <IconButton>
-              <LoginRoundedIcon sx={{ color: "white" }} />
-            </IconButton>
-          </div>
-        ) : (
-          <Grid container className={classes.GridContainer}>
-            <Grid item xs={2} className={classes.GridUtility}>
-              <Link style={listStyle} to="/">
-                {" "}
-                <Typography
-                  className={classes.Logo}
-                  style={{ fontSize: "25px" }}
-                >
-                  108Mobiles
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid
-              item
-              xs={8}
-              className={classes.GridUtility}
-              width="100%"
-              //   border="1px solid green"
-            >
-              <Box
-                className={`${
-                  isMatch
-                    ? `${classes.searchBarContH}`
-                    : `${classes.searchBarCont}`
-                }`}
-              >
-                <input
-                  onClick={openAutoSuggest}
-                  // onChange={inputValueHandler}
-                  onKeyUp={inputValueHandler}
-                  // onMouseEnter={openAutoSuggest}
-                  type="text"
-                  placeholder="search item here"
-                  className={classes.searchBar}
-                />
-
-                <SearchIcon sx={{ paddingLeft: "10px" }} fontSize="medium" />
-              </Box>
-            </Grid>
-
-            {/* this will work when user enter some search in search bar */}
-            {autoSuggest && (
-              <Box className={classes.autoSuggestHolder}>
-                {filteredArray.map((item) => (
-                  <Link style={listStyle2} to={`/mobiles/${item}`}>
-                    {" "}
-                    <Typography
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "100%",
-                        paddingLeft: "7px",
-                        "&:hover": { backgroundColor: "#d1ccc0" },
-                      }}
-                    >
-                      <TrendingUpIcon fontSize="small" />
-                      &nbsp;
-                      {item}
-                    </Typography>
-                  </Link>
-                ))}
-              </Box>
-            )}
-            <Grid item xs={2} className={classes.GridUtility}>
+    <React.Fragment>
+      {" "}
+      <AppBar sx={{ backgroundColor: "#2c2c54" }}>
+        <Toolbar>
+          {isMatch ? (
+            <div className={classes.smallScreen}>
+              <DrawerComp categories={categories} />
               <Typography
                 className={`${
-                  isMatch ? `${classes.Logins}` : `${classes.Login}`
+                  isMatch ? `${classes.Logos}` : `${classes.Logo}`
                 }`}
-                style={{ fontSize: "25px" }}
               >
-                <Button
-                  sx={{
-                    color: "white",
-                    fontWeight: "500",
-                    fontSize: "22px",
-                    textTransform: "none",
-                  }}
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  {/* Login  */}
-                  <LoginIcon fontSize="large" />
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <Link style={listStyle2} to="/login">
-                    <MenuItem onClick={handleClose}>Login</MenuItem>
-                  </Link>
-                  <Link style={listStyle2} to="/signup">
-                    {" "}
-                    <MenuItem onClick={handleClose}>Sign Up</MenuItem>
-                  </Link>
-
-                  {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-                </Menu>
-                {/* Login */}
+                108Mobiles
               </Typography>
+              <IconButton>
+                <LoginRoundedIcon sx={{ color: "white" }} />
+              </IconButton>
+            </div>
+          ) : (
+            <Grid container className={classes.GridContainer}>
+              <Grid item xs={2} className={classes.GridUtility}>
+                <Link style={listStyle} to="/">
+                  {" "}
+                  <Typography
+                    className={classes.Logo}
+                    style={{ fontSize: "25px" }}
+                  >
+                    108Mobiles
+                  </Typography>
+                </Link>
+              </Grid>
+              <Grid
+                item
+                xs={8}
+                className={classes.GridUtility}
+                width="100%"
+                //   border="1px solid green"
+              >
+                <Box
+                  className={`${
+                    isMatch
+                      ? `${classes.searchBarContH}`
+                      : `${classes.searchBarCont}`
+                  }`}
+                >
+                  <input
+                    onClick={openAutoSuggest}
+                    // onChange={inputValueHandler}
+                    onKeyUp={inputValueHandler}
+                    // onMouseEnter={openAutoSuggest}
+                    type="text"
+                    placeholder="search item here"
+                    className={classes.searchBar}
+                  />
+
+                  <SearchIcon sx={{ paddingLeft: "10px" }} fontSize="medium" />
+                </Box>
+              </Grid>
+
+              {/* this will work when user enter some search in search bar */}
+              {autoSuggest && (
+                <Box className={classes.autoSuggestHolder}>
+                  {filteredArray.map((item) => (
+                    <Link style={listStyle2} to={`/mobiles/${item}`}>
+                      {" "}
+                      <Typography
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          width: "100%",
+                          paddingLeft: "7px",
+                          "&:hover": { backgroundColor: "#d1ccc0" },
+                        }}
+                      >
+                        <TrendingUpIcon fontSize="small" />
+                        &nbsp;
+                        {item}
+                      </Typography>
+                    </Link>
+                  ))}
+                </Box>
+              )}
+              <Grid item xs={2} className={classes.GridUtility}>
+                <Typography
+                  className={`${
+                    isMatch ? `${classes.Logins}` : `${classes.Login}`
+                  }`}
+                  style={{ fontSize: "25px" }}
+                >
+                  <Button
+                    sx={{
+                      color: "white",
+                      fontWeight: "500",
+                      fontSize: "22px",
+                      textTransform: "none",
+                    }}
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    {/* Login  */}
+                    <LoginIcon fontSize="large" />
+                  </Button>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                  >
+                    <Link style={listStyle2}>
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          closeLoginArea();
+                        }}
+                      >
+                        Login
+                      </MenuItem>
+                    </Link>
+                    <Link style={listStyle2}>
+                      {" "}
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          closeSignUpArea();
+                        }}
+                      >
+                        Sign Up
+                      </MenuItem>
+                    </Link>
+
+                    {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                  </Menu>
+                  {/* Login */}
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-      </Toolbar>
-    </AppBar>
+          )}
+        </Toolbar>
+      </AppBar>
+      {login && (
+        <LoginArea
+          closeLoginArea={closeLoginArea}
+          closeSignUpArea={closeSignUpArea}
+        />
+      )}
+      {signIn && (
+        <SignUpArea
+          closeLoginArea={closeLoginArea}
+          closeSignUpArea={closeSignUpArea}
+        />
+      )}
+    </React.Fragment>
   );
 }
 

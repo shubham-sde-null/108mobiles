@@ -4,6 +4,10 @@ import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { listStyle2 } from "../Contexts/listStyle";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+
+import CloseIcon from "@mui/icons-material/Close";
 const MyBtn = styled(Button)({
   // border: "1px solid hotpink",
   width: "85%",
@@ -18,10 +22,16 @@ const MyBtn = styled(Button)({
 });
 const useStyles = makeStyles(() => ({
   loginContainer: {
+    position: "absolute",
+    left: "0%",
+    top: "0%",
+    display: "flex",
     // border: "1px solid red",
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     width: "100vw",
     height: "100vh",
+    // background: "transparent",
+    zIndex: "100",
   },
   loginHolder: {
     top: "50%",
@@ -31,6 +41,7 @@ const useStyles = makeStyles(() => ({
     width: "380px",
     height: "380px",
     backgroundColor: "#ffffff",
+    background: "transparent",
     borderRadius: "5px",
     display: "flex",
     flexDirection: "column",
@@ -39,6 +50,28 @@ const useStyles = makeStyles(() => ({
     // gap: "40px",
     // marginTop: "50px",
     // border: "1px solid red",
+  },
+  closeButton: {
+    top: "23%",
+    left: "63%",
+    position: "absolute",
+    transform: "translate(-23%,-63%)",
+    width: "50px",
+    height: "40px",
+    // backgroundColor: "#ffffff",
+    // background: "transparent",
+    borderRadius: "5px",
+    display: "flex",
+
+    alignItems: "center",
+    justifyContent: "center",
+    // paddingTop: "50px",
+    // gap: "40px",
+    // marginTop: "50px",
+    // border: "1px solid green",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   inputField: {
     marginTop: "20px",
@@ -55,7 +88,7 @@ const useStyles = makeStyles(() => ({
   },
   loginCredentials: {},
 }));
-function LoginArea() {
+function LoginArea({ closeLoginArea, closeSignUpArea }) {
   const classes = useStyles();
   return (
     <Box className={classes.loginContainer}>
@@ -72,7 +105,39 @@ function LoginArea() {
         <MyBtn className={classes.btn}>Login</MyBtn>
         <Typography sx={{ color: "black", marginTop: "10px" }}>
           Don't have an account?&nbsp;
-          <Link style={listStyle2}>Sign Up</Link>
+          <Link
+            style={listStyle2}
+            onClick={() => {
+              closeLoginArea();
+              closeSignUpArea();
+            }}
+          >
+            Sign Up
+          </Link>
+        </Typography>
+        <Typography
+          variant="body"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "3px",
+            marginTop: "15px",
+          }}
+        >
+          Sign In With &nbsp; <FacebookIcon color="primary" />
+          <GoogleIcon color="warning" />
+        </Typography>
+      </Box>
+      <Box className={classes.closeButton}>
+        <Typography variant="body" sx={{ color: "red" }}>
+          <CloseIcon
+            fontSize="large"
+            sx={{
+              color: "white",
+              "&:hover": { color: "black", border: "0.5px solid white" },
+            }}
+            onClick={closeLoginArea}
+          />
         </Typography>
       </Box>
     </Box>
