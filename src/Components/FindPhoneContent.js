@@ -28,7 +28,8 @@ function FindPhoneContent({ data }) {
           fontSize: "16px",
           fontWeight: "600",
           maxWidth: "300px",
-          //   border: "1px solid green",
+          // border: "1px solid green",
+          textDecoration: "underline",
           overflow: "hidden",
           //   padding: "10px",
           paddingLeft: "10px",
@@ -57,7 +58,10 @@ function FindPhoneContent({ data }) {
           </Box>
           <Divider
             sx={{
-              width: "300px",
+              width: "98%",
+              margin: "auto",
+              marginTop: "5px",
+              margingBottom: "5px",
               backgroundColor: "grey",
             }}
           />

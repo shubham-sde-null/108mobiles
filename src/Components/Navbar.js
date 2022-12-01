@@ -44,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     // border: "1px solid red",
     // width: "100%",
     margin: "auto",
+
+    // -webkit-tap-highlight-color: transparent;
   },
   Login: {
     fontSize: "30px",
@@ -89,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
   smallScreen: {
     display: "flex",
-    // border: "1px solid red",
+    // border: "1px solid orange",
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
@@ -226,7 +228,7 @@ function Navbar() {
   };
   const classes = useStyles();
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [autoSuggest, setAutoSuggest] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -256,18 +258,29 @@ function Navbar() {
   return (
     <React.Fragment>
       {" "}
-      <AppBar sx={{ backgroundColor: "#2c2c54" }}>
+      <AppBar
+        sx={{
+          backgroundColor: "#001d3d",
+          // border: "2px solid hotpink",
+        }}
+      >
         <Toolbar>
           {isMatch ? (
-            <div className={classes.smallScreen}>
+            <div
+              className={classes.smallScreen}
+              // style={{ border: "1px solid green" }}
+            >
               <DrawerComp categories={categories} />
-              <Typography
-                className={`${
-                  isMatch ? `${classes.Logos}` : `${classes.Logo}`
-                }`}
-              >
-                108Mobiles
-              </Typography>
+              <Link style={listStyle} to="/">
+                <Typography
+                  className={`${
+                    isMatch ? `${classes.Logos}` : `${classes.Logo}`
+                  }`}
+                >
+                  108Mobiles
+                </Typography>
+              </Link>
+
               <IconButton>
                 <LoginRoundedIcon sx={{ color: "white" }} />
               </IconButton>

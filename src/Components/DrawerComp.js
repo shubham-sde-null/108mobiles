@@ -7,6 +7,8 @@ import UpcomingIcon from "@mui/icons-material/Upcoming";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import { listStyle3 } from "../Contexts/listStyle";
+import { Link } from "react-router-dom";
 import {
   IconButton,
   List,
@@ -55,7 +57,28 @@ function DrawerComp({ categories }) {
                   )}
                 </IconButton>
                 <ListItemText sx={{ color: "#838383", fontWeight: "bold" }}>
-                  {item}
+                  <Link
+                    style={listStyle3}
+                    to={
+                      index === 0
+                        ? "/"
+                        : index === 1
+                        ? "/comparemobiles"
+                        : index === 2
+                        ? "/upcomingmobiles"
+                        : index === 3
+                        ? "/latestnews"
+                        : index === 4
+                        ? "/bestmobiles"
+                        : index === 5
+                        ? "/latestmobiles"
+                        : index === 7
+                        ? "mobilesbyfeatures"
+                        : "/"
+                    }
+                  >
+                    {item}
+                  </Link>
                 </ListItemText>
               </ListItemIcon>
             </ListItemButton>

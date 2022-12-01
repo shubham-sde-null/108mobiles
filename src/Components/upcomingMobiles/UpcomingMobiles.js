@@ -67,6 +67,7 @@ function UpcomigMobiles() {
         className={
           isMatch ? `${classes.titleSmallScreen}` : `${classes.titleFullScreen}`
         }
+        // sx={{ display: isMatch ? "none" : "" }}
         // sx={{
         //   width: "70%",
         //   // border: "1px solid red",
@@ -93,7 +94,10 @@ function UpcomigMobiles() {
       </Box>
 
       {isMatch ? (
-        <Box className={classes.carouselContH}>
+        <Box
+          className={classes.carouselContH}
+          // sx={{ display: isMatch ? "none" : "" }}
+        >
           {/* <Grid container sx={{ border: "1px solid black" }}>
         <Grid item lg={12} sm={12} md={6}> */}
           {/* <Carousel

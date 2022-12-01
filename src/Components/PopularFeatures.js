@@ -1,9 +1,36 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, useTheme, useMediaQuery } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { mainFeatures } from "../Contexts/Categories";
 
 const useStyles = makeStyles(() => ({
+  mainHeader: {
+    fontSize: "22px",
+    color: "black",
+    fontWeight: "500",
+    padding: "14px",
+    paddingLeft: "30px",
+  },
+  mainHeaderH: {
+    fontSize: "16px",
+    color: "black",
+    fontWeight: "500",
+    // padding: "15px",
+    paddingLeft: "15px",
+    paddingTop: "9px",
+    paddingBottom: "9px",
+  },
+
+  iconTitle: {
+    fontSize: "18px",
+    color: "#222f3e",
+    fontWeight: "500",
+  },
+  iconTitleH: {
+    fontSize: "12px",
+    color: "#222f3e",
+    fontWeight: "500",
+  },
   featuresCont: {
     display: "flex",
     // alignItems: "center",
@@ -14,6 +41,22 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     backgroundColor: "white",
     borderRadius: "5px",
+    // border: "1px solid hotpink",
+  },
+  featuresContH: {
+    display: "flex",
+    // alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginTop: "55px",
+    // width: "100%",
+    width: "100%",
+    // margin: "0px",
+    // margin: "auto",
+    backgroundColor: "white",
+    borderRadius: "5px",
+    // border: "2px solid green",
+    paddingBottom: "7px",
   },
   featuresContInner: {
     display: "flex",
@@ -21,6 +64,18 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     // marginTop: "50px",
     gap: "15px",
+    margin: "auto",
+    backgroundColor: "white",
+    borderRadius: "5px",
+    // border: "1px solid black",
+    width: "100%",
+  },
+  featuresContInnerH: {
+    display: "flex",
+    // alignItems: "center",
+    justifyContent: "center",
+    // marginTop: "50px",
+    gap: "3px",
     margin: "auto",
     backgroundColor: "white",
     borderRadius: "5px",
@@ -38,31 +93,69 @@ const useStyles = makeStyles(() => ({
     // border: "1px solid red",
     padding: "10px",
   },
+  featureHolderH: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "3px",
+    // width: "fit-content",
+    width: "3rem",
+    padding: "5px",
+    // margin: "3px",
+    // width: "80%",
+    // width: "fit-content",
+    border: "1px solid lightgrey",
+    borderRadius: "3px",
+    // padding: "10px",
+    textAlign: "center",
+    height: "60px",
+    paddingBottom: "10px",
+    paddingTop: "5px",
+  },
 }));
 function PopularFeatures() {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Box className={classes.featuresCont}>
+      <Box
+        className={`${
+          isMatch ? `${classes.featuresContH}` : `${classes.featuresCont}`
+        }`}
+        // sx={{ display: isMatch ? "none" : "" }}
+      >
         <Typography
-          sx={{
-            fontSize: "22px",
-            color: "black",
-            fontWeight: "bold",
-            padding: "15px",
-            paddingLeft: "30px",
-          }}
+          variant="body"
+          className={`${
+            isMatch ? `${classes.mainHeaderH}` : `${classes.mainHeader}`
+          }`}
         >
           Mobiles By Popular Features
         </Typography>
-        <Box className={classes.featuresContInner}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.featuresContInnerH}`
+              : `${classes.featuresContInner}`
+          }`}
+        >
           {mainFeatures.map((item) => (
-            <Box className={classes.featureHolder}>
+            <Box
+              className={`${
+                isMatch
+                  ? `${classes.featureHolderH}`
+                  : `${classes.featureHolder}`
+              }`}
+            >
               <Typography variant="body"> {item.icon}</Typography>
 
               <Typography
                 variant="body"
-                sx={{ fontSize: "18px", color: "#222f3e", fontWeight: "500" }}
+                className={`${
+                  isMatch ? `${classes.iconTitleH}` : `${classes.iconTitle}`
+                }`}
               >
                 {item.features}
               </Typography>

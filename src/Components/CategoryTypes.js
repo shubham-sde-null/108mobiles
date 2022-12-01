@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   categoryTypesH: {
     marginTop: "-7px",
-    width: "fit-content",
+    width: "100%",
     // border: "1px solid red",
     height: "fit-content",
     // margin: "auto",

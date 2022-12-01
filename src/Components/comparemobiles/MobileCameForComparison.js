@@ -1,10 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
 import Divider from "@mui/material/Divider";
 import SingleComparison from "./SingleComparison";
 const useStyles = makeStyles(() => ({
+  // text fields
+  summaryTitle: {
+    fontSize: "22px",
+    fontWeight: "600",
+  },
+  summaryTitleH: {
+    fontSize: "14px",
+    fontWeight: "600",
+  },
   MobileCameForComparisonHolder: {
     display: "flex",
     // gap: "10px",
@@ -19,12 +28,41 @@ const useStyles = makeStyles(() => ({
     borderRadius: "5px",
     flexWrap: "wrap",
   },
+  MobileCameForComparisonHolderH: {
+    display: "flex",
+    // gap: "10px",
+    alignItems: "center",
+    // justifyContent: "center",
+    // flexDirection: "column",
+    padding: "5px",
+    border: "0.5px solid lightgrey",
+    marginTop: "5px",
+    maxWidth: "100%",
+    margin: "auto",
+    backgroundColor: "white",
+    borderRadius: "5px",
+    // flexWrap: "wrap",
+    // paddingLeft: "15px",
+    overflow: "hidden",
+    boxShadow:
+      "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+  },
   descBox: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     width: "17%",
+    // border: "1px solid orange",
+    gap: "10px",
+  },
+  descBoxH: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    // justifyContent: "center",
+    width: "fit-content",
+    // width: "17%",
     // border: "1px solid orange",
     gap: "10px",
   },
@@ -42,21 +80,50 @@ const useStyles = makeStyles(() => ({
     width: "19%",
     // border: "2px solid blue",
   },
+  firstCompareH: {
+    display: "flex",
+    marginLeft: "5px",
+    // width: "19%",
+    width: "20%",
+    // border: "2px solid blue",
+  },
   secondCompare: {
-    marginLeft: "11px",
-    // border: "1px solid green",
-
+    display: "flex",
+    marginLeft: "12px",
     width: "19%",
+    // border: "2px solid blue",
+  },
+
+  secondCompareH: {
+    display: "flex",
+    marginLeft: "5px",
+    width: "20%",
+    // border: "2px solid blue",
   },
   thirdCompare: {
-    marginLeft: "11px",
+    display: "flex",
+    marginLeft: "12px",
     width: "19%",
-    // border: "1px solid hotpink",
+    // border: "2px solid blue",
+  },
+  thirdCompareH: {
+    display: "flex",
+    marginLeft: "5px",
+    width: "20%",
+    // border: "2px solid blue",
   },
   fouthCompare: {
-    marginLeft: "11px",
+    display: "flex",
+    marginLeft: "12px",
     width: "19%",
-    // border: "1px solid yellow",
+    // border: "2px solid blue",
+  },
+  fouthCompareH: {
+    display: "none",
+    // display: "flex",
+    // marginLeft: "5px",
+    // width: "20%",
+    // border: "2px solid blue",
   },
   textField: {
     display: "flex",
@@ -66,9 +133,21 @@ const useStyles = makeStyles(() => ({
     // border: "1px solid black",
     // color: "red",
   },
+  textFieldH: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: "75px",
+    // border: "1px solid black",
+    // color: "red",
+  },
   feature: {
     fontWeight: "500",
     fontSize: "18px",
+  },
+  featureH: {
+    fontWeight: "500",
+    fontSize: "14px",
   },
   difference: {
     fontSize: "14px",
@@ -76,6 +155,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   const dataNav = useSelector((state) => state.completeMobileData);
   let jsonObject = dataNav.map(JSON.stringify);
   let uniqueSet = new Set(jsonObject);
@@ -89,12 +170,26 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
   const [fourthBox] = uniqueArray.filter((item) => item.mobilename === mobile4);
   const classes = useStyles();
   return (
-    <Box className={classes.MobileCameForComparisonHolder}>
-      <Box className={classes.descBox}>
-        <Box className={classes.textField}>
+    <Box
+      className={`${
+        isMatch
+          ? `${classes.MobileCameForComparisonHolderH}`
+          : `${classes.MobileCameForComparisonHolder}`
+      }`}
+    >
+      <Box
+        className={`${isMatch ? `${classes.descBoxH}` : `${classes.descBox}`}`}
+      >
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
           <Typography
             variant="body"
-            sx={{ fontSize: "22px", fontWeight: "600" }}
+            className={`${
+              isMatch ? `${classes.summaryTitleH}` : `${classes.summaryTitle}`
+            }`}
           >
             Summary:
           </Typography>
@@ -107,8 +202,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
           }}
         />
 
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Performance
           </Typography>
         </Box>
@@ -119,8 +223,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
             color: "lightgray",
           }}
         />
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Display
           </Typography>
         </Box>
@@ -131,8 +244,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
             color: "lightgray",
           }}
         />
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Front Camera
           </Typography>
         </Box>
@@ -143,8 +265,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
             color: "lightgray",
           }}
         />
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Rear Camera
           </Typography>
         </Box>
@@ -155,8 +286,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
             color: "lightgray",
           }}
         />
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Battery
           </Typography>
         </Box>
@@ -167,8 +307,17 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
             color: "lightgray",
           }}
         />
-        <Box className={classes.textField}>
-          <Typography variant="body" className={classes.feature}>
+        <Box
+          className={`${
+            isMatch ? `${classes.textFieldH}` : `${classes.textField}`
+          }`}
+        >
+          <Typography
+            variant="body"
+            className={`${
+              isMatch ? `${classes.featureH}` : `${classes.feature}`
+            }`}
+          >
             Storage
           </Typography>
         </Box>
@@ -180,7 +329,11 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
           }}
         />
       </Box>
-      <Box className={classes.firstCompare}>
+      <Box
+        className={`${
+          isMatch ? `${classes.firstCompareH}` : `${classes.firstCompare}`
+        }`}
+      >
         {firstBox ? (
           /* (
           <Box className={classes.boxOnCondition}>
@@ -282,14 +435,26 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
           ""
         )}
       </Box>
-      <Box className={classes.secondCompare}>
+      <Box
+        className={`${
+          isMatch ? `${classes.secondCompareH}` : `${classes.secondCompare}`
+        }`}
+      >
         {secondBox ? <SingleComparison mobileData={secondBox} /> : ""}
       </Box>
-      <Box className={classes.thirdCompare}>
+      <Box
+        className={`${
+          isMatch ? `${classes.thirdCompareH}` : `${classes.thirdCompare}`
+        }`}
+      >
         {" "}
         {thirdBox ? <SingleComparison mobileData={thirdBox} /> : ""}
       </Box>
-      <Box className={classes.fouthCompare}>
+      <Box
+        className={`${
+          isMatch ? `${classes.fourthCompareH}` : `${classes.fourthCompare}`
+        }`}
+      >
         {" "}
         {fourthBox ? <SingleComparison mobileData={fourthBox} /> : ""}
       </Box>

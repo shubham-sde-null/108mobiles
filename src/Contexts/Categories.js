@@ -4,6 +4,22 @@ import StorageOutlinedIcon from "@mui/icons-material/StorageOutlined";
 import CameraRearOutlinedIcon from "@mui/icons-material/CameraRearOutlined";
 import FiveGOutlinedIcon from "@mui/icons-material/FiveGOutlined";
 import StayCurrentPortraitOutlinedIcon from "@mui/icons-material/StayCurrentPortraitOutlined";
+// import { useTheme, useMediaQuery } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
+// const myStyles = makeStyles(() => ({
+//   titleSize: {
+//     fontsize: "22px",
+//     // color: "#222f3e",
+//     color: "red",
+//     border: "1px solid yellow",
+//   },
+//   titleSizeH: {
+//     fontsize: "22px",
+//     // color: "#222f3e",
+//     color: "red",
+//   },
+// }));
+// const classes = myStyles();
 export const categories = [
   "Mobiles",
   "Compare Mobiles",
@@ -251,35 +267,100 @@ export const brandsLogo = [
 export const mainFeatures = [
   {
     features: "Storage",
-    icon: <StorageOutlinedIcon sx={{ fontSize: "55px", color: "#222f3e" }} />,
+    icon: (
+      <StorageOutlinedIcon
+        // sx={{ fontSize: "55px", color: "#222f3e" }}
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+          },
+        }}
+      />
+    ),
   },
   {
     features: "Camera",
     icon: (
-      <CameraRearOutlinedIcon sx={{ fontSize: "55px", color: "#222f3e" }} />
+      <CameraRearOutlinedIcon
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+          },
+        }}
+      />
     ),
   },
   {
     features: "5G",
-    icon: <FiveGOutlinedIcon sx={{ fontSize: "55px", color: "#222f3e" }} />,
+    icon: (
+      <FiveGOutlinedIcon
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+          },
+        }}
+      />
+    ),
   },
   {
     features: "Display",
     icon: (
       <StayCurrentPortraitOutlinedIcon
-        sx={{ fontSize: "55px", color: "#222f3e" }}
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+          },
+        }}
       />
     ),
   },
   {
     features: "Dual Sim",
-    icon: <SimCardOutlinedIcon sx={{ fontSize: "55px", color: "#222f3e" }} />,
+    icon: (
+      <SimCardOutlinedIcon
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+            textAlign: "center",
+            color: "#222f3e",
+          },
+        }}
+      />
+    ),
   },
   {
     features: "Wireless Charging",
     icon: (
       <BatteryChargingFullOutlinedIcon
-        sx={{ fontSize: "55px", color: "#222f3e" }}
+        sx={{
+          "@media screen and (max-width:1536px)": {
+            fontSize: "54px",
+            color: "#222f3e",
+          },
+          "@media screen and (max-width:600px)": {
+            fontSize: "22px",
+          },
+        }}
       />
     ),
   },

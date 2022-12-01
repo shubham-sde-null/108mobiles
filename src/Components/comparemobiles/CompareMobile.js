@@ -1,4 +1,10 @@
-import { Typography, Box, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { makeStyles } from "@mui/styles";
@@ -21,6 +27,39 @@ const historyValues = [
 ];
 //end of auto suggest features
 const useStyles = makeStyles(() => ({
+  //text styling
+  textLarge: {
+    fontSize: "22px",
+    paddingLeft: "30px",
+    paddingTop: "15px",
+    paddingBottom: "15px",
+    fontWeight: "600",
+  },
+  textSmall: {
+    fontSize: "16px",
+    paddingLeft: "15px",
+    paddingTop: "15px",
+    paddingBottom: "15px",
+    fontWeight: "600",
+  },
+  searchLarge: {
+    fontSize: "16px",
+    // paddingLeft: "30px",
+    // paddingTop: "15px",
+    // paddingBottom: "15px",
+    fontWeight: "600",
+    color: "white",
+    width: "140px",
+    // border: "1px solid red",
+  },
+  searchSmall: {
+    fontSize: "13px",
+    paddingLeft: "11px",
+    // paddingTop: "15px",
+    // paddingBottom: "15px",
+    color: "white",
+    fontWeight: "600",
+  },
   compareMobileOuterCont: {
     display: "flex",
     flexDirection: "column",
@@ -28,6 +67,16 @@ const useStyles = makeStyles(() => ({
     width: "70%",
     margin: "auto",
     marginTop: "65px",
+    backgroundColor: "white",
+    borderRadius: "5px",
+  },
+  compareMobileOuterContH: {
+    display: "flex",
+    flexDirection: "column",
+    // border: "1px solid red",
+    width: "100%",
+    margin: "auto",
+    marginTop: "45px",
     backgroundColor: "white",
     borderRadius: "5px",
   },
@@ -41,6 +90,22 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#1e272e",
     borderRadius: "5px",
   },
+  searchMobileForCompareH: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "column",
+    // justifyContent: "center",
+    // alignItems: "center",
+    gap: "5px",
+    // border: "2px solid green",
+    // height: "60px",
+    backgroundColor: "#1e272e",
+    borderRadius: "5px",
+    padding: "5px",
+    paddingBottom: "20px",
+    boxSizing: "border-box",
+    marginTop: "-10px",
+  },
   searchMobileToAdd: {
     display: "flex",
     alignItems: "center",
@@ -48,6 +113,17 @@ const useStyles = makeStyles(() => ({
     height: "80%",
     backgroundColor: "white",
     borderRadius: "3px",
+  },
+  searchMobileToAddH: {
+    display: "flex",
+    alignItems: "center",
+    // border: "1px solid orange",
+    // height: "90%",
+    backgroundColor: "white",
+    // backgroundColor: "yellow",
+    borderRadius: "3px",
+    width: "97%",
+    margin: "auto",
   },
   inputField: {
     // border: "1px solid #596275",
@@ -59,10 +135,30 @@ const useStyles = makeStyles(() => ({
     margin: "5px",
     outline: "none",
     maxWidth: "150px",
+    // width: "100%",
     fontSize: "16px",
     "&::placeholder": {
       color: "#596275",
       fontSize: "15px",
+    },
+  },
+  inputFieldH: {
+    // border: "1px solid #596275",
+    // backgroundColor: "red",
+    borderRadius: "3px",
+    border: "none",
+    height: "70%",
+    padding: "3px",
+    paddingLeft: "0px",
+    margin: "3px",
+    outline: "none",
+    // width: "60%",
+    // maxWidth: "150px",
+    width: "100%",
+    fontSize: "14px",
+    "&::placeholder": {
+      color: "#596275",
+      fontSize: "12px",
     },
   },
   searchIcon: {
@@ -83,6 +179,20 @@ const useStyles = makeStyles(() => ({
     paddingBottom: "10px",
     // gap: "90px",
     backgroundColor: "#d2dae2",
+  },
+  suggestedCompareH: {
+    display: "none",
+    // display: "flex",
+    // flexDirection: "column",
+    // // border: "1px solid red",
+    // // alignItems: "center",
+    // justifyContent: "space-between",
+    // // paddingLeft: "8px",
+    // // paddingRight: "25px",
+    // // paddingTop: "10px",
+    // // paddingBottom: "10px",
+    // // gap: "90px",
+    // backgroundColor: "#d2dae2",
   },
   suggestedInner: {
     display: "flex",
@@ -136,6 +246,19 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#ecf0f1",
     // paddingLeft: "7px",
   },
+  autoSuggestHolder1H: {
+    position: "absolute",
+    top: "150px",
+    left: "10px",
+    width: "94.5%",
+    minHeight: "30px",
+    height: "fit-content",
+    border: "1px solid lightgray",
+    borderRadius: "5px",
+    color: "black",
+    backgroundColor: "#ecf0f1",
+    // paddingLeft: "7px",
+  },
   autoSuggestHolder2: {
     position: "absolute",
     top: "180px",
@@ -149,11 +272,37 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#ecf0f1",
     // paddingLeft: "7px",
   },
+  autoSuggestHolder2H: {
+    position: "absolute",
+    top: "185px",
+    left: "10px",
+    width: "94.5%",
+    minHeight: "30px",
+    height: "fit-content",
+    border: "1px solid lightgray",
+    borderRadius: "5px",
+    color: "black",
+    backgroundColor: "#ecf0f1",
+    // paddingLeft: "7px",
+  },
   autoSuggestHolder3: {
     position: "absolute",
     top: "180px",
     left: "843px",
     width: "13.2%",
+    minHeight: "30px",
+    height: "fit-content",
+    border: "1px solid lightgray",
+    borderRadius: "5px",
+    color: "black",
+    backgroundColor: "#ecf0f1",
+    // paddingLeft: "7px",
+  },
+  autoSuggestHolder3H: {
+    position: "absolute",
+    top: "217px",
+    left: "10px",
+    width: "94.5%",
     minHeight: "30px",
     height: "fit-content",
     border: "1px solid lightgray",
@@ -177,6 +326,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 function CompareMobile() {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   const dataNav = useSelector((state) => state.completeMobileData);
   let jsonObject = dataNav.map(JSON.stringify);
   let uniqueSet = new Set(jsonObject);
@@ -237,67 +388,106 @@ function CompareMobile() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Box className={classes.compareMobileOuterCont}>
+      <Box
+        className={`${
+          isMatch
+            ? `${classes.compareMobileOuterContH}`
+            : `${classes.compareMobileOuterCont}`
+        }`}
+      >
         {/* this is the first part of the box */}
         <Typography
           variant="body"
-          sx={{
-            fontSize: "22px",
-            paddingLeft: "30px",
-            paddingTop: "15px",
-            paddingBottom: "15px",
-            fontWeight: "600",
-          }}
+          className={`${
+            isMatch ? `${classes.textSmall}` : `${classes.textLarge}`
+          }`}
         >
           Compare Mobiles
         </Typography>
         {/* this is the second part of the box  */}
-        <Box className={classes.searchMobileForCompare}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.searchMobileForCompareH}`
+              : `${classes.searchMobileForCompare}`
+          }`}
+        >
           <Typography
-            sx={{
-              // border: "1px solid red",
-              width: "150px",
-              color: "white",
-              fontWeight: "600",
-            }}
+            variant="body"
+            className={`${
+              isMatch ? `${classes.searchSmall}` : `${classes.searchLarge}`
+            }`}
+            // sx={{
+            //   border: "1px solid red",
+            //   width: "150px",
+            //   color: "white",
+            //   fontWeight: "600",
+            // }}
           >
             Search Mobiles To Compare
           </Typography>
-          <Box className={classes.searchMobileToAdd}>
+          <Box
+            className={`${
+              isMatch
+                ? `${classes.searchMobileToAddH}`
+                : `${classes.searchMobileToAdd}`
+            }`}
+          >
             <SearchIcon className={classes.searchIcon} />
             <input
-              className={classes.inputField}
-              placeholder="Search Mobile to add"
+              className={`${
+                isMatch ? `${classes.inputFieldH}` : `${classes.inputField}`
+              }`}
+              placeholder="Add Mobile To Search"
               onClick={openAutoSuggest1}
               onKeyUp={inputValueHandler}
               autoComplete="off"
             />
           </Box>
-          <Box className={classes.searchMobileToAdd}>
+          <Box
+            className={`${
+              isMatch
+                ? `${classes.searchMobileToAddH}`
+                : `${classes.searchMobileToAdd}`
+            }`}
+          >
             <SearchIcon className={classes.searchIcon} />
             <input
-              className={classes.inputField}
-              placeholder="Search Mobile to add"
+              className={`${
+                isMatch ? `${classes.inputFieldH}` : `${classes.inputField}`
+              }`}
+              placeholder="Add Mobile To Search"
               onClick={openAutoSuggest2}
               onKeyUp={inputValueHandler}
               autoComplete="off"
             />
           </Box>
-          <Box className={classes.searchMobileToAdd}>
+          <Box
+            className={`${
+              isMatch
+                ? `${classes.searchMobileToAddH}`
+                : `${classes.searchMobileToAdd}`
+            }`}
+          >
             <SearchIcon className={classes.searchIcon} />
             <input
-              className={classes.inputField}
-              placeholder="Search Mobile to add"
+              className={`${
+                isMatch ? `${classes.inputFieldH}` : `${classes.inputField}`
+              }`}
+              placeholder="Add Mobile To Search"
               onClick={openAutoSuggest3}
               onKeyUp={inputValueHandler}
               autoComplete="off"
             />
           </Box>
-          <Box className={classes.searchMobileToAdd}>
+          <Box
+            className={classes.searchMobileToAdd}
+            sx={{ display: isMatch ? "none" : "" }}
+          >
             <SearchIcon className={classes.searchIcon} />
             <input
               className={classes.inputField}
-              placeholder="Search Mobile to add"
+              placeholder="Add Mobile To Search"
               onClick={openAutoSuggest4}
               onKeyUp={inputValueHandler}
               autoComplete="off"
@@ -305,7 +495,14 @@ function CompareMobile() {
           </Box>
         </Box>
         {/* this is the third part of the box which is the suggest compare  */}
-        <Box className={classes.suggestedCompare}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.suggestedCompareH}`
+              : `${classes.suggestedCompare}`
+          }`}
+          // sx={{ display: isMatch ? "none" : "flex" }}
+        >
           <Typography
             sx={{
               maxWidth: "180px",
@@ -427,7 +624,13 @@ function CompareMobile() {
         </Box>
       </Box>
       {autoSuggest1 && (
-        <Box className={classes.autoSuggestHolder1}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.autoSuggestHolder1H}`
+              : `${classes.autoSuggestHolder1}`
+          }`}
+        >
           {filteredArray.map((item) => (
             <Link
               style={listStyle2}
@@ -457,7 +660,13 @@ function CompareMobile() {
         </Box>
       )}
       {autoSuggest2 && (
-        <Box className={classes.autoSuggestHolder2}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.autoSuggestHolder2H}`
+              : `${classes.autoSuggestHolder2}`
+          }`}
+        >
           {filteredArray.map((item) => (
             <Link
               style={listStyle2}
@@ -487,7 +696,13 @@ function CompareMobile() {
         </Box>
       )}
       {autoSuggest3 && (
-        <Box className={classes.autoSuggestHolder3}>
+        <Box
+          className={`${
+            isMatch
+              ? `${classes.autoSuggestHolder3H}`
+              : `${classes.autoSuggestHolder3}`
+          }`}
+        >
           {filteredArray.map((item) => (
             <Link
               style={listStyle2}

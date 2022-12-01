@@ -27,6 +27,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     // alignItems: "center",
     // border: "1px solid green",
+    paddingBottom: "7px",
     width: "100%",
     // margin: "auto",
     // margin: "0px",
@@ -55,6 +56,7 @@ const useStyles = makeStyles(() => ({
     // marginLeft: "5px",
     // marginRight: "5px",
     borderRadius: "5px",
+    padding: "5px",
     boxShadow:
       "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
   },
