@@ -9,11 +9,19 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     marginTop: "10px",
     marginBottom: "10px",
+    // border: "1px solid red",
   },
   gridHolderH: {
     width: "100vw",
     margin: "auto",
     marginTop: "7px",
+  },
+  gridHolderM: {
+    width: "98%",
+    margin: "auto",
+    marginTop: "10px",
+    marginBottom: "10px",
+    // border: "1px solid red",
   },
   gridContainer: {
     display: "flex",
@@ -52,11 +60,16 @@ const useStyles = makeStyles(() => ({
 function NewsSection({ data }) {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
   return (
     <Box
       className={`${
-        isMatch ? `${classes.gridHolderH}` : `${classes.gridHolder}`
+        isMatch
+          ? `${classes.gridHolderH}`
+          : isMed
+          ? `${classes.gridHolderM}`
+          : `${classes.gridHolder}`
       }`}
     >
       <Typography

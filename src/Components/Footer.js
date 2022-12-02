@@ -27,6 +27,17 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     gap: "5px",
   },
+  footerContainerM: {
+    backgroundColor: "#1e272e",
+    color: "white",
+    marginTop: "3px",
+    display: "flex",
+    justifyContent: "center",
+    // border: "2px solid red",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: "10px",
+  },
   footermenu: {
     display: "flex",
     justifyContent: "center",
@@ -78,11 +89,16 @@ const useStyles = makeStyles(() => ({
 function Footer() {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
   return (
     <Box
       className={`${
-        isMatch ? `${classes.footerContainerH}` : `${classes.footerContainer}`
+        isMatch
+          ? `${classes.footerContainerH}`
+          : isMed
+          ? `${classes.footerContainerM}`
+          : `${classes.footerContainer}`
       }`}
     >
       <Box

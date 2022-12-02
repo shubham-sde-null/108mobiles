@@ -45,6 +45,21 @@ const useStyles = makeStyles(() => ({
     scrollbarGutter: "stable",
     // alignItems: "top",
   },
+  brandHolderM: {
+    display: "flex",
+    flexDirection: "column",
+    width: "98%",
+    margin: "auto",
+    marginTop: "7px",
+    overflowX: "scroll",
+
+    // border: "2px solid red",
+    backgroundColor: "white",
+    borderRadius: "7px",
+    boxShadow:
+      "rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em",
+    marginBottom: "1px",
+  },
   brandContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -70,6 +85,19 @@ const useStyles = makeStyles(() => ({
     overflowX: "scroll",
     overflowY: "auto",
     scrollbarGutter: "stable",
+  },
+  brandContainerM: {
+    display: "flex",
+    justifyContent: "space-between",
+    border: "1px solid lightgrey",
+    // border: "2px solid red",
+    borderRadius: "5px",
+    boxShadow:
+      "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+    width: "100%",
+    overflowX: "scroll",
+    // overflowY: "auto",
+    // scrollbarGutter: "stable",
   },
 
   brandName: {
@@ -130,10 +158,15 @@ function MobileBrands() {
   const classes = useStyles();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box
       className={`${
-        isMatch ? `${classes.brandHolderH}` : `${classes.brandHolder}`
+        isMatch
+          ? `${classes.brandHolderH}`
+          : isMed
+          ? `${classes.brandHolderM}`
+          : `${classes.brandHolder}`
       }`}
       // sx={{ display: isMatch ? "none" : "" }}
     >
@@ -153,6 +186,8 @@ function MobileBrands() {
             className={`${
               isMatch
                 ? `${classes.brandContainerH}`
+                : isMed
+                ? `${classes.brandContainerM}`
                 : `${classes.brandContainer}`
             }`}
           >

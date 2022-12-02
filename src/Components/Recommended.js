@@ -35,6 +35,16 @@ const useStyles = makeStyles(() => ({
     boxSizing: "border-box",
     marginTop: "5px",
   },
+  recommendedContM: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    // alignItems: "center",
+    // border: "1px solid red",
+    width: "98%",
+    margin: "auto",
+    marginTop: "7px",
+  },
   gridItems: {
     // display: "flex",
     // justifyContent: "center",
@@ -64,11 +74,16 @@ const useStyles = makeStyles(() => ({
 function Recommended({ mobileData, title }) {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
   return (
     <Paper
       className={`${
-        isMatch ? `${classes.recommendedContH}` : `${classes.recommendedCont}`
+        isMatch
+          ? `${classes.recommendedContH}`
+          : isMed
+          ? `${classes.recommendedContM}`
+          : `${classes.recommendedCont}`
       }`}
     >
       <Typography

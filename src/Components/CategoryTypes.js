@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     height: "290px",
   },
   categoryTypesH: {
-    marginTop: "-7px",
+    marginTop: "55px",
     width: "100%",
     // border: "1px solid red",
     height: "fit-content",
@@ -22,6 +22,18 @@ const useStyles = makeStyles(() => ({
 
     //adding new
     margin: "0px",
+    padding: "0px",
+    boxSizing: "border-box",
+  },
+  categoryTypesM: {
+    marginTop: "5px",
+    width: "98%",
+    // border: "1px solid red",
+    height: "fit-content",
+    margin: "auto",
+
+    //adding new
+    // margin: "0px",
     padding: "0px",
     boxSizing: "border-box",
   },
@@ -64,10 +76,15 @@ function CategoryTypes() {
   const classes = useStyles();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Paper
       className={`${
-        isMatch ? `${classes.categoryTypesH}` : `${classes.categoryTypes}`
+        isMatch
+          ? `${classes.categoryTypesH}`
+          : isMed
+          ? `${classes.categoryTypesM}`
+          : `${classes.categoryTypes}`
       }`}
     >
       <Typography
