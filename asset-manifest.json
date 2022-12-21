@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mobilecheck/static/css/main.15c67b6a.css",
-    "main.js": "/mobilecheck/static/js/main.52b973d4.js",
-    "static/js/787.55f92391.chunk.js": "/mobilecheck/static/js/787.55f92391.chunk.js",
-    "index.html": "/mobilecheck/index.html",
-    "main.15c67b6a.css.map": "/mobilecheck/static/css/main.15c67b6a.css.map",
-    "main.52b973d4.js.map": "/mobilecheck/static/js/main.52b973d4.js.map",
-    "787.55f92391.chunk.js.map": "/mobilecheck/static/js/787.55f92391.chunk.js.map"
+    "main.css": "/108mobiles/static/css/main.15c67b6a.css",
+    "main.js": "/108mobiles/static/js/main.8b439e00.js",
+    "static/js/787.55f92391.chunk.js": "/108mobiles/static/js/787.55f92391.chunk.js",
+    "index.html": "/108mobiles/index.html",
+    "main.15c67b6a.css.map": "/108mobiles/static/css/main.15c67b6a.css.map",
+    "main.8b439e00.js.map": "/108mobiles/static/js/main.8b439e00.js.map",
+    "787.55f92391.chunk.js.map": "/108mobiles/static/js/787.55f92391.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.15c67b6a.css",
-    "static/js/main.52b973d4.js"
+    "static/js/main.8b439e00.js"
   ]
 }
