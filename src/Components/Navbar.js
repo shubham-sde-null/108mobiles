@@ -156,9 +156,9 @@ function Navbar() {
   let jsonObject = dataNav.map(JSON.stringify);
   let uniqueSet = new Set(jsonObject);
   let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
-  console.log("the data received on nav page is:", uniqueArray);
+  // console.log("the data received on nav page is:", uniqueArray);
   const autoSuggestData = uniqueArray.map((item) => item.mobilename);
-  console.log("the name of mobiles", autoSuggestData);
+  // console.log("the name of mobiles", autoSuggestData);
   // console.log("the data received on nav page is:", dataNav);
   // const dispatch = useDispatch();
 

@@ -21,7 +21,7 @@ function Home() {
       const data = await fetch("http://localhost:5000/mobiledata").then(
         (data) => data.json()
       );
-      console.log("the data from the redux is:", data);
+      // console.log("the data from the redux is:", data);
 
       data.map((item) =>
         dispatch(

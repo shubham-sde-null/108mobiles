@@ -194,7 +194,7 @@ function SelectedMobilePage() {
   const theme = useTheme();
   const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const dataFrm = useSelector((state) => state);
-  console.log("the data inside selector is:", dataFrm);
+  // console.log("the data inside selector is:", dataFrm);
   const productImages = [
     "https://i.postimg.cc/y8WY4BXj/oneplus10rfront.png",
     "https://i.postimg.cc/mDynYDWC/oneplus10rback.png",

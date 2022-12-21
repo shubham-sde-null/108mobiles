@@ -129,7 +129,7 @@ function SignUpArea({ closeSignUpArea, closeLoginArea }) {
     if (result) {
       result = await result.json();
       localStorage.setItem("108login", JSON.stringify(result));
-      console.log("the sign up result is", result);
+      // console.log("the sign up result is", result);
     }
     closeSignUpArea();
     closeLoginArea();

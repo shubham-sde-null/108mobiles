@@ -161,11 +161,11 @@ function MobileCameForComparison({ mobile1, mobile2, mobile3, mobile4 }) {
   let jsonObject = dataNav.map(JSON.stringify);
   let uniqueSet = new Set(jsonObject);
   let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
-  console.log("the data received on unique page is:", uniqueArray);
+  // console.log("the data received on unique page is:", uniqueArray);
   const [firstBox] = uniqueArray.filter((item) => item.mobilename === mobile1);
-  console.log("data in box1 is", firstBox);
+  // console.log("data in box1 is", firstBox);
   const [secondBox] = uniqueArray.filter((item) => item.mobilename === mobile2);
-  console.log("data in box2 is", secondBox);
+  // console.log("data in box2 is", secondBox);
   const [thirdBox] = uniqueArray.filter((item) => item.mobilename === mobile3);
   const [fourthBox] = uniqueArray.filter((item) => item.mobilename === mobile4);
   const classes = useStyles();

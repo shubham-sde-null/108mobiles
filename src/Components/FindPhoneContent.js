@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 function FindPhoneContent({ data }) {
-  console.log("data i got is", data);
+  // console.log("data i got is", data);
   const classes = useStyles();
   return (
     <Box className={classes.findPhoneContentCont}>
