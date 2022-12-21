@@ -118,14 +118,19 @@ function SignUpArea({ closeSignUpArea, closeLoginArea }) {
   const [password, setPassword] = useState("");
   async function signUpDetails() {
     const item = { email, password };
-    let result = await fetch("http://localhost:5000/authenticatedata", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        accept: "application/json",
-      },
-      body: JSON.stringify(item),
-    });
+    // http://localhost:5000/authenticatedata
+
+    let result = await fetch(
+      "https://kind-rose-rhinoceros-hose.cyclic.app/authenticatedata",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify(item),
+      }
+    );
     if (result) {
       result = await result.json();
       localStorage.setItem("108login", JSON.stringify(result));

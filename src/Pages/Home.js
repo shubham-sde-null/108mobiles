@@ -18,9 +18,13 @@ function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     async function getData() {
-      const data = await fetch("http://localhost:5000/mobiledata").then(
-        (data) => data.json()
-      );
+      // const data = await fetch("http://localhost:5000/mobiledata").then(
+      //   (data) => data.json()
+      // );
+      //here I have hosted my backend on cycli.sh are from there I got this url
+      const data = await fetch(
+        "https://kind-rose-rhinoceros-hose.cyclic.app/mobiledata"
+      ).then((data) => data.json());
       // console.log("the data from the redux is:", data);
 
       data.map((item) =>
