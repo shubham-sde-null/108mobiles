@@ -111,6 +111,24 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     // paddingLeft: "7px",
   },
+  autoSuggestHolderH: {
+    position: "absolute",
+    // top: "48px",
+    // left: "190px",
+    width: "46%",
+    minHeight: "30px",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    margin: "auto",
+    marginTop: "180px",
+    marginLeft: "-32px",
+    height: "fit-content",
+    border: "1px solid lightgray",
+    borderRadius: "5px",
+    color: "black",
+    backgroundColor: "white",
+    // paddingLeft: "7px",
+  },
 }));
 const historyValues = [
   "oneplus 10 pro",
@@ -229,6 +247,7 @@ function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
 
   const [autoSuggest, setAutoSuggest] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -328,7 +347,13 @@ function Navbar() {
 
               {/* this will work when user enter some search in search bar */}
               {autoSuggest && (
-                <Box className={classes.autoSuggestHolder}>
+                <Box
+                  className={`${
+                    isMed
+                      ? `${classes.autoSuggestHolderH}`
+                      : `${classes.autoSuggestHolder}`
+                  }`}
+                >
                   {filteredArray.map((item) => (
                     <Link style={listStyle2} to={`/mobiles/${item}`}>
                       {" "}

@@ -145,7 +145,7 @@ function Footer() {
         variant="body"
         sx={{
           //   color: "#0652DD",
-          fontSize: isMatch ? "12px" : "18px",
+          fontSize: isMatch ? "0.7rem" : "1.2rem",
           fontWeight: "400",
           padding: isMatch ? "5px" : "10px",
         }}
@@ -160,11 +160,51 @@ function Footer() {
           isMatch ? `${classes.footermenuH}` : `${classes.footermenu}`
         }`}
       >
-        <Box>Home</Box>
-        <Box>About us</Box>
-        <Box>Contact us</Box>
-        <Box>Feedback</Box>
-        <Box>Terms and conditions</Box>
+        <Box>
+          {" "}
+          <Typography
+            variant="body"
+            sx={{ fontSize: isMatch ? "0.6rem" : "1.2rem" }}
+          >
+            Home
+          </Typography>
+        </Box>
+        <Box>
+          {" "}
+          <Typography
+            variant="body"
+            sx={{ fontSize: isMatch ? "0.6rem" : "1.2rem" }}
+          >
+            About Us
+          </Typography>
+        </Box>
+        <Box>
+          {" "}
+          <Typography
+            variant="body"
+            sx={{ fontSize: isMatch ? "0.6rem" : "1.2rem" }}
+          >
+            Contact Us
+          </Typography>
+        </Box>
+        <Box>
+          {" "}
+          <Typography
+            variant="body"
+            sx={{ fontSize: isMatch ? "0.6rem" : "1.2rem" }}
+          >
+            Feedback
+          </Typography>
+        </Box>
+        <Box>
+          {" "}
+          <Typography
+            variant="body"
+            sx={{ fontSize: isMatch ? "0.6rem" : "1.2rem" }}
+          >
+            Terms and Condition
+          </Typography>
+        </Box>
       </Box>
       <p
         className={`${

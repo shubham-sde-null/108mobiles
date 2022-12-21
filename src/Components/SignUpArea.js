@@ -1,4 +1,10 @@
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
@@ -68,6 +74,28 @@ const useStyles = makeStyles(() => ({
       cursor: "pointer",
     },
   },
+  closeButtonH: {
+    top: "30%",
+    left: "76%",
+    position: "absolute",
+    transform: "translate(-23%,-63%)",
+    width: "50px",
+    height: "40px",
+    // backgroundColor: "#ffffff",
+    // background: "transparent",
+    borderRadius: "5px",
+    display: "flex",
+
+    alignItems: "center",
+    justifyContent: "center",
+    // paddingTop: "50px",
+    // gap: "40px",
+    // marginTop: "50px",
+    // border: "1px solid green",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   inputField: {
     marginTop: "20px",
     fontSize: "16px",
@@ -84,6 +112,8 @@ const useStyles = makeStyles(() => ({
   SignUpCredentials: {},
 }));
 function SignUpArea({ closeSignUpArea, closeLoginArea }) {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   async function signUpDetails() {
@@ -145,7 +175,11 @@ function SignUpArea({ closeSignUpArea, closeLoginArea }) {
           </Link>
         </Typography>
       </Box>
-      <Box className={classes.closeButton}>
+      <Box
+        className={`${
+          isMatch ? `${classes.closeButtonH}` : `${classes.closeButton}`
+        }`}
+      >
         <Typography variant="body" sx={{ color: "red" }}>
           <CloseIcon
             fontSize="large"

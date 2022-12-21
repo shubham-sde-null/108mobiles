@@ -1,4 +1,10 @@
-import { Box, Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles(() => ({
@@ -6,6 +12,14 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     width: "70%",
+    margin: "auto",
+    backgroundColor: "white",
+    // border: "1px solid green",
+  },
+  completeSpecsContH: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
     margin: "auto",
     backgroundColor: "white",
     // border: "1px solid green",
@@ -39,9 +53,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 function CompleteSpecs() {
+  const theme = useTheme();
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
   return (
-    <Box className={classes.completeSpecsCont}>
+    <Box
+      className={`${
+        isMed ? `${classes.completeSpecsContH}` : `${classes.completeSpecsCont}`
+      }`}
+    >
       <Typography
         variant="body"
         sx={{
@@ -124,6 +144,14 @@ function CompleteSpecs() {
         <Box className={classes.singleSpecsContFirst}>
           <Typography variant="body">Chipset</Typography>
           <Typography variant="body">CPU</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">Architecture</Typography>
           <Typography variant="body">Fabrication</Typography>
           <Typography variant="body">Graphics</Typography>
@@ -180,10 +208,21 @@ function CompleteSpecs() {
           <Typography variant="body">20.1:9</Typography>
           <Typography variant="body"> 394 ppi</Typography>
           <Typography variant="body">87.9 %</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              {/* <Typography></Typography> */}
+            </>
+          ) : (
+            ""
+          )}
           {/* <br /> */}
           <Typography></Typography>
           <Typography></Typography>
-          <Typography variant="body"> Corning Gorilla Glass</Typography>
+          <Typography variant="body" sx={{ marginTop: isMed ? "-5px" : "" }}>
+            {" "}
+            Corning Gorilla Glass
+          </Typography>
           <Typography variant="body"> Yes with punch-hole display</Typography>
           <Typography variant="body">
             {" "}
@@ -191,6 +230,14 @@ function CompleteSpecs() {
           </Typography>
           <Typography variant="body"> 950 nits</Typography>
           <Typography variant="body"> Yes, HDR 10+</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">120 Hz</Typography>
         </Box>
       </Box>
@@ -226,6 +273,15 @@ function CompleteSpecs() {
           <Typography></Typography>
           <Typography variant="body">Sensor</Typography>
           <Typography variant="body">Autofocus</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+              <Typography></Typography>
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">OIS</Typography>
           <Typography variant="body">Flash</Typography>
           <Typography variant="body">Image Resolution</Typography>
@@ -287,7 +343,15 @@ function CompleteSpecs() {
             <br />
             High Dynamic Range mode (HDR)
           </Typography>
-          <Typography variant="body">
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              {/* <Typography></Typography> */}
+            </>
+          ) : (
+            ""
+          )}
+          <Typography variant="body" sx={{ marginTop: "-5px" }}>
             {" "}
             Digital Zoom
             <br />
@@ -307,7 +371,8 @@ function CompleteSpecs() {
           <br />
           <Typography></Typography>
           <Typography variant="body"> Single</Typography>
-          <Typography></Typography>
+          {/* {isMed ? "" : <Typography></Typography>} */}
+
           <Typography variant="body">
             {" "}
             16 MP f/2.4, Wide Angle, Primary Camera
@@ -372,7 +437,18 @@ function CompleteSpecs() {
         <Box className={classes.singleSpecsContSecond}>
           <Typography variant="body"> 128GB</Typography>
           <Typography variant="body"> No</Typography>
-          <Typography variant="body">UFS 3.1</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+              <Typography></Typography>
+            </>
+          ) : (
+            ""
+          )}
+          <Typography variant="body" sx={{ marginTop: isMed ? "-5px" : "" }}>
+            UFS 3.1
+          </Typography>
           <Typography variant="body">Yes</Typography>
         </Box>
       </Box>
@@ -395,8 +471,28 @@ function CompleteSpecs() {
           <Typography variant="body">Netwrok Support</Typography>
           <Typography variant="body">VoLTE</Typography>
           <Typography variant="body">SIM 1</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+              <Typography></Typography>
+              {/* <Typography></Typography> */}
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">SIM 2</Typography>
           <Typography variant="body">Wi-Fi</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+              {/* <Typography></Typography> */}
+              {/* <Typography></Typography> */}
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">Wi-Fi Features</Typography>
           <Typography variant="body">Bluetooth</Typography>
           <Typography variant="body">GPS</Typography>
@@ -483,6 +579,16 @@ function CompleteSpecs() {
           <Typography></Typography>
           <Typography></Typography>
           <Typography variant="body">Optical</Typography>
+          {isMed ? (
+            <>
+              <Typography></Typography>
+              <Typography></Typography>
+              {/* <Typography></Typography> */}
+              {/* <Typography></Typography> */}
+            </>
+          ) : (
+            ""
+          )}
           <Typography variant="body">
             {" "}
             Light sensor, Proximity sensor, Accelerometer, Compass, Gyroscope

@@ -1,4 +1,4 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, useTheme, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import Divider from "@mui/material/Divider";
@@ -20,6 +20,15 @@ const useStyles = makeStyles(() => ({
     // border: "1px solid red",
     marginTop: "65px",
     width: "70%",
+    margin: "auto",
+    backgroundColor: "white",
+  },
+  selectedProductMainBoxH: {
+    display: "flex",
+    flexDirection: "column",
+    // border: "1px solid red",
+    marginTop: "65px",
+    width: "100%",
     margin: "auto",
     backgroundColor: "white",
   },
@@ -140,9 +149,50 @@ const useStyles = makeStyles(() => ({
     width: "200px",
     height: "200px",
   },
+  //mobile detail images
+  largeScreen: {
+    display: "flex",
+    // alignItems: "center",
+    // justifyContent: "center",
+    position: "fixed",
+    width: "95vw",
+    height: "85vh",
+    // border: "1px solid lightgray",
+    // border: "1px solid red",
+    boxShadow:
+      "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+    zIndex: "100",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%,-50%)",
+    backgroundColor: "#f1f2f6",
+
+    marginTop: "25px",
+  },
+  mediumScreen: {
+    display: "flex",
+    // alignItems: "center",
+    // justifyContent: "center",
+    position: "fixed",
+    width: "85vw",
+    height: "60vh",
+    // border: "1px solid lightgray",
+    // border: "2px solid green",
+    boxShadow:
+      "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+    zIndex: "100",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%,-50%)",
+    backgroundColor: "#f1f2f6",
+    // background: "rgba(2, 2, 2, 0.81)",
+    marginTop: "25px",
+  },
 }));
 
 function SelectedMobilePage() {
+  const theme = useTheme();
+  const isMed = useMediaQuery(theme.breakpoints.down("md"));
   const dataFrm = useSelector((state) => state);
   console.log("the data inside selector is:", dataFrm);
   const productImages = [
@@ -158,7 +208,13 @@ function SelectedMobilePage() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Box className={classes.selectedProductMainBox}>
+      <Box
+        className={`${
+          isMed
+            ? `${classes.selectedProductMainBoxH}`
+            : `${classes.selectedProductMainBox}`
+        }`}
+      >
         <Typography variant="body" className={classes.mobileName}>
           Oneplus 10R 5G
         </Typography>
@@ -218,7 +274,13 @@ function SelectedMobilePage() {
             >
               Rs.34,000
             </Typography>
-            <Divider sx={{ width: "700px", color: "gray" }} />
+            <Divider
+              sx={{
+                // display: isMed ? "none" : "",
+                width: isMed ? "auto" : "700px",
+                color: "gray",
+              }}
+            />
             <Box
               sx={{
                 display: "flex",
@@ -380,24 +442,27 @@ function SelectedMobilePage() {
       <CompleteSpecs />
       {imageselected && (
         <Box
-          sx={{
-            display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-            position: "fixed",
-            width: "95vw",
-            height: "85vh",
-            // border: "1px solid lightgray",
-            boxShadow:
-              "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-            zIndex: "100",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%,-50%)",
-            backgroundColor: "#f1f2f6",
-            marginTop: "25px",
-          }}
-          //  className={classes.selectedImageCont}
+          // sx={{
+          //   display: "flex",
+          //   // alignItems: "center",
+          //   // justifyContent: "center",
+          //   position: "fixed",
+          //   width: "95vw",
+          //   height: "85vh",
+          //   // border: "1px solid lightgray",
+          //   border: "1px solid red",
+          //   boxShadow:
+          //     "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+          //   zIndex: "100",
+          //   left: "50%",
+          //   top: "50%",
+          //   transform: "translate(-50%,-50%)",
+          //   backgroundColor: "#f1f2f6",
+          //   marginTop: "25px",
+          // }}
+          className={`${
+            isMed ? `${classes.mediumScreen}` : `${classes.largeScreen}`
+          }`}
         >
           <Carousel
             autoPlay={false}
@@ -422,7 +487,7 @@ function SelectedMobilePage() {
                   borderRadius: "5px",
                 }}
               >
-                <img src={item} width="250px" alt="" />
+                <img src={item} width={isMed ? "200px" : "250px"} alt="" />
               </Box>
             ))}
           </Carousel>

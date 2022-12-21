@@ -1,4 +1,10 @@
-import { Box, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
@@ -26,7 +32,7 @@ const useStyles = makeStyles(() => ({
     left: "0%",
     top: "0%",
     display: "flex",
-    // border: "1px solid red",
+    // border: "3px solid red",
     backgroundColor: "rgba(0,0,0,0.6)",
     width: "100vw",
     height: "100vh",
@@ -73,6 +79,28 @@ const useStyles = makeStyles(() => ({
       cursor: "pointer",
     },
   },
+  closeButtonH: {
+    top: "30%",
+    left: "76%",
+    position: "absolute",
+    transform: "translate(-23%,-63%)",
+    width: "50px",
+    height: "40px",
+    // backgroundColor: "#ffffff",
+    // background: "transparent",
+    borderRadius: "5px",
+    display: "flex",
+
+    alignItems: "center",
+    justifyContent: "center",
+    // paddingTop: "50px",
+    // gap: "40px",
+    // marginTop: "50px",
+    // border: "1px solid green",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   inputField: {
     marginTop: "20px",
     fontSize: "16px",
@@ -89,6 +117,8 @@ const useStyles = makeStyles(() => ({
   loginCredentials: {},
 }));
 function LoginArea({ closeLoginArea, closeSignUpArea }) {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
   return (
     <Box className={classes.loginContainer}>
@@ -128,7 +158,11 @@ function LoginArea({ closeLoginArea, closeSignUpArea }) {
           <GoogleIcon color="warning" />
         </Typography>
       </Box>
-      <Box className={classes.closeButton}>
+      <Box
+        className={`${
+          isMatch ? `${classes.closeButtonH}` : `${classes.closeButton}`
+        }`}
+      >
         <Typography variant="body" sx={{ color: "red" }}>
           <CloseIcon
             fontSize="large"
